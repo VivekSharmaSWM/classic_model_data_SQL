@@ -87,3 +87,109 @@ WHERE orderDate BETWEEN '2003-07-01' AND '2003-12-31';
 SELECT * FROM employees
 WHERE jobTitle LIKE '%Manager%';
 
+-- 21. Get customers whose name ends with 'Inc'.
+SELECT * FROM CUSTOMERS
+WHERE customerName LIKE '%Inc';
+
+-- 22. Find customers where the state IS NULL.
+SELECT * FROM customers
+WHERE state IS NULL;
+
+-- 23. Replace NULL state values with 'Unknown’.
+UPDATE customers
+SET state = 'Unknown'
+WHERE state IS NULL;
+
+-- 24. List employees where reportsTo IS NULL.
+SELECT * FROM employees
+WHERE reportsTo IS NULL;
+
+-- 25. Show customers where the phone is NOT NULL.
+SELECT * FROM customers
+WHERE phone IS NOT NULL;
+
+-- 26. Replace NULL creditLimit with 0 in output.
+UPDATE customers
+SET creditLimit = 0
+WHERE creditLimit IS NULL;
+
+-- 27. Find customers where the state is NULL but the country is USA.
+SELECT * FROM customers
+WHERE state IS NULL AND country = 'USA';
+
+-- 28. Use COALESCE to return state → city → country.
+SELECT customerNumber, customerName, COALESCE(state, city, country) AS Location FROM customers;
+
+-- 29. Find orders where shippedDate IS NULL.
+SELECT * FROM orders
+WHERE shippedDate IS NULL;
+
+-- 30. Show customers where the state OR postalCode is NULL.
+SELECT * FROM customers
+WHERE state IS NULL OR postalCode IS NULL;
+
+-- 31. Show the top 5 cheapest products.
+SELECT * FROM products
+ORDER BY MSRP ASC
+LIMIT 5;
+
+-- 32. Find customers whose name has exactly 5 characters.
+SELECT contactFirstName, length(contactFirstName) AS name_length
+FROM customers
+WHERE length(contactFirstName) = 5;
+
+-- 33. Show customers whose name starts and ends with a vowel.
+SELECT 
+    *
+FROM
+    customers
+WHERE
+    (customerName LIKE 'A%'
+        OR customerName LIKE 'E%'
+        OR customerName LIKE 'I%'
+        OR customerName LIKE 'O%'
+        OR customerName LIKE 'U%')
+        AND (customerName LIKE '%A'
+        OR customerName LIKE '%E'
+        OR customerName LIKE '%I'
+        OR customerName LIKE '%O'
+        OR customerName LIKE '%U');
+
+-- 34. Find products where the price is within the top 10 highest.
+SELECT * FROM products
+ORDER BY MSRP DESC
+LIMIT 10;
+
+-- 35. Show customers whose phone number does NOT contain '0'.
+SELECT * FROM customers
+WHERE phone NOT LIKE ('%0%');
+
+-- 36. Find customers whose name contains consecutive repeating letters (like “oo”, “ss”).
+SELECT * FROM customers
+WHERE customerName LIKE ('%OO%') OR customerName LIKE ('%SS%');
+
+-- 37. Show customers whose city name contains exactly 2 occurrences of the letter ‘a’.
+SELECT * FROM customers
+WHERE city LIKE '%a%a%';
+
+-- 38. Find customers whose name has no vowels at all.
+SELECT 
+    *
+FROM
+    customers
+WHERE
+    (customerName NOT LIKE '%A%'
+        AND customerName NOT LIKE '%E%'
+        AND customerName NOT LIKE '%I%'
+        AND customerName NOT LIKE '%O%'
+        AND customerName NOT LIKE '%U%')
+;
+
+-- 39. Show products where price ends with .99 (pattern logic).
+SELECT * FROM products
+WHERE MSRP LIKE '%.99';
+
+-- 40. List customers whose name length is greater than 10 characters.
+SELECT customerName, length(customerName) AS Length_customerName FROM customers
+WHERE length(customerName) > 10;
+
