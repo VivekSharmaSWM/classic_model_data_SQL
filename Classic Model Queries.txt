@@ -1,0 +1,89 @@
+-- Practice Questionnaire Classic_model_detaset
+
+-- 1. List all customers from the USA
+SELECT * FROM customers 
+WHERE country = 'USA';
+
+-- 2. Show all orders placed after 2004-01-01.
+SELECT * FROM orders
+WHERE orderDate > '2004-01-01';
+
+-- 3. Get all products with buyPrice > 100.
+SELECT * FROM products
+WHERE buyPrice > 100;
+
+-- 4. Display customers sorted by customerName (A → Z).
+SELECT * FROM customers
+ORDER BY customerName ASC;
+
+-- 5. Show the top 5 most expensive products.
+SELECT * FROM products
+ORDER BY MSRP DESC
+LIMIT 5;
+
+-- 6. Find all orders where status is 'Shipped' and sort by shippedDate.
+SELECT * FROM orders
+WHERE status = 'Shipped'
+ORDER BY shippedDate ASC;
+
+-- 7. List customers whose names start with 'A' and sort by country.
+SELECT * FROM customers
+WHERE customername LIKE 'A%'
+ORDER BY country ASC;
+
+-- 8. Get products ordered by price descending, skipping the first 5.
+SELECT productName, MSRP
+FROM products
+ORDER BY MSRP DESC
+LIMIT 5,1000;
+
+-- 9. Show employees sorted by jobTitle and then lastName.
+SELECT * FROM employees
+ORDER BY jobTitle ASC, lastName ASC;
+
+-- 10. Fetch customers from USA or France, ordered by credit limit descending.
+SELECT * FROM customers
+WHERE country = 'USA' OR country = 'France'
+ORDER BY creditLimit DESC;
+
+-- 11. Get the latest 10 orders based on orderDate
+SELECT * FROM orders
+ORDER BY orderDate DESC
+LIMIT 10;
+
+-- 12. Find customers with creditLimit 50000.
+SELECT * FROM customers
+WHERE creditLimit > 50000;
+
+-- 13. Get products with prices between 50 and 100. (BETWEEN
+SELECT * FROM products
+WHERE MSRP BETWEEN 50 AND 100;
+
+-- 14. List customers from 'USA', 'France', or 'Germany'. (IN)
+SELECT * FROM customers
+WHERE COUNTRY IN ('USA', 'France', 'Germany');
+
+-- 15. Find customers whose name starts with 'S'. (LIKE)
+SELECT * FROM customers
+WHERE customerName LIKE 'S%';
+
+-- 16. Show orders where status is NOT 'Shipped'.
+SELECT * FROM orders
+WHERE status <> 'Shipped';
+
+-- 17. Find customers with a credit limit between 50k–100k AND from the USA.
+SELECT * FROM customers
+WHERE creditLimit BETWEEN 50000 AND 100000 AND country = 'USA';
+
+-- 18. List products NOT in the 'Classic Cars' product line.
+SELECT productName, productLine FROM products
+WHERE productLine <> 'Classic Cars';
+
+-- 19. Find orders placed between two dates.
+SELECT * FROM orders
+WHERE orderDate BETWEEN '2003-07-01' AND '2003-12-31';
+
+-- 20. Show employees whose job title contains 'Manager'.
+SELECT * FROM employees
+WHERE jobTitle LIKE '%Manager%';
+
